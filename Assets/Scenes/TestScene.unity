@@ -123,6 +123,41 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &46676304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 46676305}
+  m_Layer: 5
+  m_Name: inactive bombs parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &46676305
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46676304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 518447887}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &215469987
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +396,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &426412941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426412942}
+  m_Layer: 5
+  m_Name: inactive lives parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &426412942
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426412941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 518447887}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &427941551
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +634,7 @@ GameObject:
   - component: {fileID: 518447886}
   - component: {fileID: 518447885}
   - component: {fileID: 518447884}
+  - component: {fileID: 518447888}
   m_Layer: 5
   m_Name: Stats Canvas
   m_TagString: Untagged
@@ -648,6 +719,8 @@ RectTransform:
   m_Children:
   - {fileID: 804215962}
   - {fileID: 428366804}
+  - {fileID: 426412942}
+  - {fileID: 46676305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -655,6 +728,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &518447888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518447883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ae3414204a5dd4698beb50af233122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeLivesParent: {fileID: 804215962}
+  _inactiveLivesParent: {fileID: 426412942}
+  _activeBombsParent: {fileID: 428366804}
+  _inactiveBombsParent: {fileID: 46676305}
+  _livePrefab: {fileID: 6450267925776702406, guid: cf6047e6d649576459f8121b95b7d4f5, type: 3}
+  _bombPrefab: {fileID: 2603142204465823450, guid: 907b595a746209445b1f64a0eda38002, type: 3}
 --- !u!1 &569287453
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +759,7 @@ GameObject:
   - component: {fileID: 569287457}
   - component: {fileID: 569287458}
   - component: {fileID: 569287459}
+  - component: {fileID: 569287460}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -750,7 +842,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &569287458
@@ -781,6 +873,18 @@ MonoBehaviour:
   _defaultNbLives: 3
   _defaultNbBombs: 3
   _invincibilityAfterHitDuration: 5
+--- !u!114 &569287460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569287453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff1e5da5276d12b47888e31c06ef54a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &757466794
 GameObject:
   m_ObjectHideFlags: 0

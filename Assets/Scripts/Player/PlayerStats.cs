@@ -1,10 +1,20 @@
+using System;
 using UnityEngine;
 
 /// <summary>
 /// Modifie la vie du joueur
 /// </summary>
-public class PlayerHealth : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
+    #region Evénements
+
+    /// <summary>
+    /// Appelé quand l'UI doit être repaint
+    /// </summary>
+    public EventHandler OnRequestUIRepaintEvent = delegate { };
+
+    #endregion
+
     #region Propriétés
 
     /// <summary>
@@ -75,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
     /// <summary>
     /// Init
     /// </summary>
-    private void Start()
+    private void Awake()
     {
         NbLives = _defaultNbLives;
         NbBombs = _defaultNbBombs;
@@ -90,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
         if (IsDead)
         {
             //TAF : Notifier le jeu qu'on a perdu
-            print("dead");
+            //print("dead");
             return;
         }
 
@@ -110,6 +120,7 @@ public class PlayerHealth : MonoBehaviour
     public void IncreaseHealth()
     {
         NbLives++;
+        OnRequestUIRepaintEvent?.Invoke(this, EventArgs.Empty);
     }
 
     /// <summary>
@@ -118,6 +129,7 @@ public class PlayerHealth : MonoBehaviour
     public void IncreaseBombs()
     {
         NbBombs++;
+        OnRequestUIRepaintEvent?.Invoke(this, EventArgs.Empty);
     }
 
     /// <summary>
@@ -131,6 +143,7 @@ public class PlayerHealth : MonoBehaviour
         CanTakeDamage = false;
         NbLives--;
         _invincibilityTimer = 0f;
+        OnRequestUIRepaintEvent?.Invoke(this, EventArgs.Empty);
     }
 
     /// <summary>
@@ -139,6 +152,7 @@ public class PlayerHealth : MonoBehaviour
     public void DecreaseBombs()
     {
         NbBombs--;
+        OnRequestUIRepaintEvent?.Invoke(this, EventArgs.Empty);
     }
 
     #endregion

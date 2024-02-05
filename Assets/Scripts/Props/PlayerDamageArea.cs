@@ -10,7 +10,7 @@ public class PlayerDamageArea : MonoBehaviour
     /// <summary>
     /// Les pts de vie du joueur
     /// </summary>
-    private PlayerHealth _playerHealth;
+    private PlayerStats _stats;
 
     #endregion
 
@@ -18,19 +18,19 @@ public class PlayerDamageArea : MonoBehaviour
 
     private void Start()
     {
-        _playerHealth = FindObjectOfType<PlayerHealth>();
+        _stats = FindObjectOfType<PlayerStats>();
     }
 
     /// <summary>
     /// Quand entre en collision avec le joueur
     /// </summary>
     /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !_stats.IsDead)
         {
-            print("hit");
-            _playerHealth.DecreaseHealth();
+            //print("hit");
+            _stats.DecreaseHealth();
         }
     }
 
