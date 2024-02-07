@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Déplace le joueur sur le curseur de la souris
 /// </summary>
-public class MouseMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     #region Propriétés
 
@@ -51,7 +51,6 @@ public class MouseMovement : MonoBehaviour
         _t = transform;
         _cam = Camera.main;
         _rb = GetComponent<Rigidbody2D>();
-        CanMove = true;
     }
 
     // Update is called once per frame
