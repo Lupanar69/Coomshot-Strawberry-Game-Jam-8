@@ -78,6 +78,11 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     private float _invincibilityTimer;
 
+    /// <summary>
+    /// L'animator du joueur
+    /// </summary>
+    private Animator _playerAnimator;
+
     #endregion
 
     #region Fonctions Unity
@@ -87,9 +92,21 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        _playerAnimator = GetComponent<Animator>();
         NbLives = _defaultNbLives;
         NbBombs = _defaultNbBombs;
         CanTakeDamage = true;
+    }
+
+    /// <summary>
+    /// Quand on change de scène
+    /// </summary>
+    private void OnDestroy()
+    {
+        // Vide les events pour éviter les fuites de mémoire
+        // quand on change de scène
+
+        OnRequestUIRepaintEvent = null;
     }
 
     /// <summary>
@@ -143,6 +160,7 @@ public class PlayerStats : MonoBehaviour
         CanTakeDamage = false;
         NbLives--;
         _invincibilityTimer = 0f;
+        _playerAnimator.Play("a_playerHit");
         OnRequestUIRepaintEvent?.Invoke(this, EventArgs.Empty);
     }
 
@@ -170,6 +188,7 @@ public class PlayerStats : MonoBehaviour
         if (_invincibilityTimer > _invincibilityAfterHitDuration)
         {
             CanTakeDamage = true;
+            _playerAnimator.Play("a_playerIdle");
         }
     }
 

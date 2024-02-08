@@ -72,6 +72,11 @@ public class GameManager : MonoBehaviour
     private PlayerController _controller;
 
     /// <summary>
+    /// Le component d'attaque du joueur
+    /// </summary>
+    private PlayerAttack _attack;
+
+    /// <summary>
     /// Temps d'attente avant le début du jeu
     /// </summary>
     private float _countdownReadyTimer;
@@ -93,6 +98,7 @@ public class GameManager : MonoBehaviour
     {
         _stats = FindObjectOfType<PlayerStats>();
         _controller = FindObjectOfType<PlayerController>();
+        _attack = FindObjectOfType<PlayerAttack>();
         _stats.IsInvincible = true;
         _controller.CanMove = false;
         _ready.SetActive(true);
@@ -112,6 +118,7 @@ public class GameManager : MonoBehaviour
         {
             _stats.IsInvincible = false;
             _controller.CanMove = true;
+            _attack.CanAttack = true;
             _ready.SetActive(false);
             _go.SetActive(true);
         }
@@ -147,5 +154,7 @@ public class GameManager : MonoBehaviour
     {
         _victory.SetActive(true);
         _stats.IsInvincible = true;
+        _controller.CanMove = false;
+        _attack.CanAttack = false;
     }
 }
