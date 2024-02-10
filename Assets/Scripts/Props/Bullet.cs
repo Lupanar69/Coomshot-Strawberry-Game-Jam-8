@@ -37,12 +37,6 @@ public abstract class Bullet : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        Move();
-    }
-
     /// <summary>
     /// Quand le projectile sort de l'écran
     /// </summary>
@@ -74,12 +68,16 @@ public abstract class Bullet : MonoBehaviour
 
     #endregion
 
-    #region Fonctions protégées
+    #region Fonctions publiques
 
     /// <summary>
     /// Déplace le projectile
     /// </summary>
-    protected abstract void Move();
+    public abstract void Move();
+
+    #endregion
+
+    #region Fonctions protégées
 
     /// <summary>
     /// Déplace le projectile
@@ -89,7 +87,6 @@ public abstract class Bullet : MonoBehaviour
     {
         OnTriggerEnterEvent?.Invoke(this, collision);
     }
-
 
     #endregion
 }

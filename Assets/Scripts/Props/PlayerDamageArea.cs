@@ -27,9 +27,8 @@ public class PlayerDamageArea : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !_stats.IsDead)
+        if (collision.CompareTag("Player"))
         {
-            //print("hit");
             _stats.DecreaseHealth();
         }
     }

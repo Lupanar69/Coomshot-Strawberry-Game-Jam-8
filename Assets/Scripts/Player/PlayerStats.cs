@@ -154,7 +154,7 @@ public class PlayerStats : MonoBehaviour
     /// </summary>
     public void DecreaseHealth()
     {
-        if (IsInvincible || !CanTakeDamage)
+        if (IsInvincible || !CanTakeDamage || IsDead)
             return;
 
         CanTakeDamage = false;

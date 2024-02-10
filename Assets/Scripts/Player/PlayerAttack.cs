@@ -127,6 +127,7 @@ public class PlayerAttack : MonoBehaviour
             bullet = _inactiveBulletsParent.GetChild(0);
             bullet.gameObject.SetActive(true);
             bullet.SetParent(_activeBulletsParent);
+            BulletManager._bullets.Add(bullet.GetComponent<PlayerBullet>());
         }
         else
         {
@@ -134,6 +135,7 @@ public class PlayerAttack : MonoBehaviour
             PlayerBullet pb = bullet.GetComponent<PlayerBullet>();
             pb.OnBecomeInvisibleEvent += OnBulletBecomeInvisibleCallback;
             pb.OnTriggerEnterEvent += OnBulletTriggerEnterCallback;
+            BulletManager._bullets.Add(pb);
         }
 
         bullet.position = _t.position;
@@ -149,6 +151,7 @@ public class PlayerAttack : MonoBehaviour
         PlayerBullet pb = sender as PlayerBullet;
         pb.transform.SetParent(_inactiveBulletsParent);
         pb.gameObject.SetActive(false);
+        BulletManager._bullets.Remove(pb);
     }
 
     /// <summary>
@@ -161,6 +164,7 @@ public class PlayerAttack : MonoBehaviour
         PlayerBullet pb = sender as PlayerBullet;
         pb.transform.SetParent(_inactiveBulletsParent);
         pb.gameObject.SetActive(false);
+        BulletManager._bullets.Remove(pb);
     }
 
     /// <summary>
