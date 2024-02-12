@@ -23,6 +23,11 @@ public abstract class Bullet : MonoBehaviour
     #region Variables d'instance
 
     /// <summary>
+    /// La transform du projectile
+    /// </summary>
+    protected Transform _t;
+
+    /// <summary>
     /// Le Rigidbody
     /// </summary>
     protected Rigidbody2D _rb;
@@ -34,6 +39,7 @@ public abstract class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _t = transform;
         _rb = GetComponent<Rigidbody2D>();
     }
 
@@ -69,6 +75,15 @@ public abstract class Bullet : MonoBehaviour
     #endregion
 
     #region Fonctions publiques
+
+    /// <summary>
+    /// Envoie la demande désactivation du projectile.
+    /// Permet d'appeler son event depuis une autre classe.
+    /// </summary>
+    public void DisableBullet()
+    {
+        OnBecomeInvisibleEvent?.Invoke(this, EventArgs.Empty);
+    }
 
     /// <summary>
     /// Déplace le projectile

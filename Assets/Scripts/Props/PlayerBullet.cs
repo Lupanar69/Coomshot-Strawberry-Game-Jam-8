@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 /// <summary>
@@ -24,16 +23,7 @@ public sealed class PlayerBullet : Bullet
     /// </summary>
     public override void Move()
     {
-        _rb.MovePosition(_rb.position + _moveSpeed * Time.fixedDeltaTime * Vector2.up);
-    }
-
-    /// <summary>
-    /// Envoie la demande désactivation du projectile.
-    /// Permet d'appeler son event depuis une autre classe.
-    /// </summary>
-    public void DisableBullet()
-    {
-        OnBecomeInvisibleEvent?.Invoke(this, EventArgs.Empty);
+        _rb.MovePosition(_rb.position + _moveSpeed * Time.fixedDeltaTime * (Vector2)_t.up);
     }
 
     #endregion
@@ -46,12 +36,10 @@ public sealed class PlayerBullet : Bullet
     /// <param name="collision"></param>
     protected override void OnTriggerEnterCallback(Collider2D collision)
     {
-        switch (collision.tag)
+        if (collision.CompareTag("Enemy"))
         {
-            case "Enemy":
-                collision.GetComponent<EnemyStats>().DecreaseHealth();
-                base.OnTriggerEnterCallback(collision);
-                return;
+            collision.GetComponent<EnemyStats>().DecreaseHealth();
+            base.OnTriggerEnterCallback(collision);
         }
     }
 

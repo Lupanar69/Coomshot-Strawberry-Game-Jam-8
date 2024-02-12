@@ -36,8 +36,8 @@ public class Bomb : MonoBehaviour
                 collision.GetComponent<EnemyStats>().DecreaseHealth();
                 return;
 
-            case "Bomb":
-                collision.GetComponent<PlayerBullet>().DisableBullet();
+            case "Bullet":
+                collision.GetComponent<Bullet>().DisableBullet();
                 return;
         }
     }
