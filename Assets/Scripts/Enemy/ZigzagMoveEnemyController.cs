@@ -27,5 +27,13 @@ public sealed class ZigzagMoveEnemyController : EnemyController
         _resultForce = new Vector2(h, v);
     }
 
+    /// <summary>
+    /// Appelée dans la Start
+    /// </summary>
+    protected override void OnStart()
+    {
+
+    }
+
     #endregion
 }

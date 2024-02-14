@@ -15,6 +15,15 @@ public abstract class EnemyController : MonoBehaviour
 
     #endregion
 
+    #region Propriétés
+
+    /// <summary>
+    /// TRUE si l'ennemi vient d'apparaître à l'écran
+    /// </summary>
+    public bool HasAppeared { get; set; } = false;
+
+    #endregion
+
     #region Variables Unity
 
     /// <summary>
@@ -57,6 +66,7 @@ public abstract class EnemyController : MonoBehaviour
     {
         _t = transform;
         _rb = GetComponent<Rigidbody2D>();
+        OnStart();
     }
 
     // Update is called once per frame
@@ -76,7 +86,21 @@ public abstract class EnemyController : MonoBehaviour
     /// </summary>
     private void OnBecameInvisible()
     {
-        OnBecomeInvisibleEvent?.Invoke(this, EventArgs.Empty);
+        // La vérif nous permet de spawner les ennemis
+        // hors de l'écran sans que cet event ne soit appelé
+        if (this.HasAppeared)
+        {
+            OnBecomeInvisibleEvent?.Invoke(this, EventArgs.Empty);
+            this.HasAppeared = false;
+        }
+    }
+
+    /// <summary>
+    /// Quand l'ennemi apparaît = l'écran
+    /// </summary>
+    private void OnBecameVisible()
+    {
+        this.HasAppeared = true;
     }
 
     /// <summary>
@@ -92,7 +116,25 @@ public abstract class EnemyController : MonoBehaviour
 
     #endregion
 
+    #region Fonctions publiques
+
+    /// <summary>
+    /// Appelée quand l'ennemi est spawné.
+    /// Permet de réinitialiser ses variables si besoin.
+    /// </summary>
+    public virtual void OnSpawned()
+    {
+
+    }
+
+    #endregion
+
     #region Fonctions protégées
+
+    /// <summary>
+    /// Pour initialiser les scripts enfants si besoin
+    /// </summary>
+    protected abstract void OnStart();
 
     /// <summary>
     /// Détermine quand et comment l'agent doit se déplacer
