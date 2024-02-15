@@ -43,7 +43,7 @@ public class KamikazeEnemyController : EnemyController
     /// La durée du sinus avant la phase d'attente
     /// </summary>
     [SerializeField]
-    private float _delayBeforeWait = 3f;
+    private Vector2 _delayBeforeWaitInterval = new(3f, 5f);
 
     /// <summary>
     /// Le temps de pause avant la charge
@@ -95,6 +95,11 @@ public class KamikazeEnemyController : EnemyController
     /// </summary>
     private float _waitT;
 
+    /// <summary>
+    /// La durée du sinus avant la phase d'attente
+    /// </summary>
+    private float _delayBeforeWait = 3f;
+
     #endregion
 
     #region Fonctions publiques
@@ -113,6 +118,7 @@ public class KamikazeEnemyController : EnemyController
         _lerpT = 0f;
         _followT = 0f;
         _waitT = 0f;
+        _delayBeforeWait = Random.Range(_delayBeforeWaitInterval.x, _delayBeforeWaitInterval.y);
     }
 
     #endregion
@@ -176,6 +182,7 @@ public class KamikazeEnemyController : EnemyController
     protected override void OnStart()
     {
         _lerpDst = new Vector2(0f, _t.position.y - _lerpDistance);
+        _delayBeforeWait = Random.Range(_delayBeforeWaitInterval.x, _delayBeforeWaitInterval.y);
     }
 
     #endregion
