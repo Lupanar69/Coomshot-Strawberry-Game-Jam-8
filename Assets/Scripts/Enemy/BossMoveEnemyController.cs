@@ -12,7 +12,7 @@ public class BossMoveEnemyController : EnemyController
     /// La vitesse d'oscillation du sinus
     /// </summary>
     [SerializeField]
-    private float _sineSpeed = 1f;
+    private float zigzagAmplitude = 1f;
 
     /// <summary>
     /// La distance à parcourir pour son arrivée
@@ -45,6 +45,11 @@ public class BossMoveEnemyController : EnemyController
     /// </summary>
     private float _lerpT;
 
+    /// <summary>
+    /// Le coef du lerp
+    /// </summary>
+    private float _time;
+
     #endregion
 
     #region Fonctions publiques
@@ -55,8 +60,10 @@ public class BossMoveEnemyController : EnemyController
     /// </summary>
     public override void OnSpawned()
     {
+        _lerpDst = new Vector2(0f, _t.position.y - _lerpDistance);
         _phaseOne = true;
         _lerpT = 0f;
+        _time = 30f;
     }
 
     #endregion
@@ -81,7 +88,7 @@ public class BossMoveEnemyController : EnemyController
         else
         {
             float v = _verticalMoveSpeed;
-            float h = Mathf.Sin(Time.time * _sineSpeed) * _horizontalMoveSpeed;
+            float h = Mathf.PingPong(Time.time * _horizontalMoveSpeed, zigzagAmplitude * 2f) - zigzagAmplitude;
             _resultForce = new Vector2(h, v);
         }
     }
