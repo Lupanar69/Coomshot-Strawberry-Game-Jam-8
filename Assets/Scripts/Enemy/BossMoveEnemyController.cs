@@ -45,11 +45,6 @@ public class BossMoveEnemyController : EnemyController
     /// </summary>
     private float _lerpT;
 
-    /// <summary>
-    /// Le coef du lerp
-    /// </summary>
-    private float _time;
-
     #endregion
 
     #region Fonctions publiques
@@ -63,7 +58,6 @@ public class BossMoveEnemyController : EnemyController
         _lerpDst = new Vector2(0f, _t.position.y - _lerpDistance);
         _phaseOne = true;
         _lerpT = 0f;
-        _time = 30f;
     }
 
     #endregion

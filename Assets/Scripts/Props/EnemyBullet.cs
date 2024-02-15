@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 /// <summary>
@@ -18,11 +17,6 @@ public sealed class EnemyBullet : Bullet
     #endregion
 
     #region Variables d'instance
-
-    /// <summary>
-    /// La transform du projectile
-    /// </summary>
-    private Transform _t;
 
     /// <summary>
     /// Les stats du joueur
@@ -52,15 +46,6 @@ public sealed class EnemyBullet : Bullet
     public override void Move()
     {
         _rb.MovePosition(_rb.position + _moveSpeed * Time.fixedDeltaTime * (Vector2)_t.up);
-    }
-
-    /// <summary>
-    /// Envoie la demande désactivation du projectile.
-    /// Permet d'appeler son event depuis une autre classe.
-    /// </summary>
-    public void DisableBullet()
-    {
-        OnBecomeInvisibleEvent?.Invoke(this, EventArgs.Empty);
     }
 
     #endregion
